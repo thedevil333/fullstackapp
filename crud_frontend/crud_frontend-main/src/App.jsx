@@ -21,11 +21,11 @@ const BASE_URL = 'http://34.228.187.231:9090/springapp1';
     e.preventDefault();
     try {
       if (isEditing) {
-        await axios.put(`http://34.228.187.231:9090/springapp1/update`, product);
+        await axios.put(`${BASE_URL}/update`, product);
         alert('Update successful');
         setIsEditing(false);
       } else {
-        await axios.post(`http://34.228.187.231:9090/springapp1/insert`, product);
+        await axios.post(`${BASE_URL}/insert`, product);
         alert('Insert successful');
       }
       setProduct({ id: '', name: '', os: '', price: '' });
@@ -37,7 +37,7 @@ const BASE_URL = 'http://34.228.187.231:9090/springapp1';
   };
 
   const fetchProducts = async () => {
-    const res = await axios.get(`http://34.228.187.231:9090/springapp1/display`);
+    const res = await axios.get(`${BASE_URL}/display`);
     setProducts(res.data);
   };
 
@@ -48,7 +48,7 @@ const BASE_URL = 'http://34.228.187.231:9090/springapp1';
 
   const deleteProduct = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      await axios.delete(`http://34.228.187.231:9090/springapp1/delete/${id}`);
+      await axios.delete(`${BASE_URL}/delete/${id}`);
       alert('Delete successful');
       fetchProducts();
     }
